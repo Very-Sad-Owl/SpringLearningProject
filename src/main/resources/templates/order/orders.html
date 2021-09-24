@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="parts/common :: head"></head>
+
+<body>
+<div th:insert="~{parts/common :: scripts}"></div>
+<div th:replace="parts/common :: navbar"></div>
+
+<div class="container">
+    <div th:replace="parts/common :: userNavbar"></div>
+</div>
+
+<div class="container ">
+    <table class="table">
+        <thead>
+        <tr>
+            <th th:text="#{locale.order.ordernum}" scope="col"></th>
+            <th th:text="#{locale.order.date}" scope="col"></th>
+            <th th:text="#{locale.order.client}" scope="col"></th>
+            <th th:text="#{locale.order.address}" scope="col"></th>
+            <th th:text="#{locale.order.postalcode}" scope="col"></th>
+            <th th:text="#{locale.order.tea}" scope="col"></th>
+            <th th:text="#{locale.order.sum}" scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+
+        <tbody th:each="order : ${orders}">
+        <tr>
+            <th th:text="${order.getId()}"></th>
+            <th th:text="${order.getDate()}"></th>
+            <th th:text="${order.getFirstName() + ' ' + order.getLastName()}"></th>
+            <th th:text="${order.getCity() + ', ' + order.getAddress()}"></th>
+            <th th:text="${order.getPostIndex()}"></th>
+            <th>
+                <div th:each="tea : ${order.getTeaList()}">
+                    <p th:text="#{locale.tea.code}">
+                        <a th:href="@{/tea/{path} (path = ${tea.getId()})}" th:text="${tea.getId()}"></a>
+                    </p>
+                </div>
+            </th>
+            <th th:text="${order.getTotalPrice()}"></th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer th:insert="~{parts/common :: footer}"></footer>
+</body>
+</html>

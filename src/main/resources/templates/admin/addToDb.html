@@ -1,0 +1,128 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="parts/common :: head"></head>
+
+<body>
+<div th:insert="~{parts/common :: scripts}"></div>
+<div th:replace="parts/common :: navbar"></div>
+
+<div id="container">
+    <div class="container" >
+        <div th:replace="parts/common :: userNavbar"></div>
+    </div>
+
+    <div class="container mt-5 pb-5">
+        <form method="post" action="/user/add" enctype="multipart/form-data">
+            <h5
+                    th:text="#{locale.navigation.addprod}"></h5>
+            <br>
+                <div class="form-group row">
+                    <label
+                            th:text="#{locale.tea.title}"
+                            class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-6">
+                        <input type="text" name="teaTitle" th:value="${tea} ? ${tea.teaTitle} : ''"
+                               class="form-control" th:classappend="${teaTitleError} ? ' is-invalid'" />
+                        <div th:if="${teaTitleError}" class="invalid-feedback" th:text="${teaTitleError}"></div>
+                    </div>
+                </div>
+
+            <div class="form-group row">
+                <label
+                        th:text="#{locale.tea.brand}"
+                        class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-6">
+                    <input type="text" name="brand" th:value="${tea} ? ${tea.brand} : ''"
+                           class="form-control" th:classappend="${teaError} ? ' is-invalid'" />
+                    <div th:if="${brandError}" class="invalid-feedback" th:text="${brandError}"></div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label
+                        th:text="#{locale.tea.country}"
+                        class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-6">
+                    <input type="text" name="country" th:value="${tea} ? ${tea.country} : ''"
+                           class="form-control" th:classappend="${countryError} ? ' is-invalid'" />
+                    <div th:if="${countryError}" class="invalid-feedback" th:text="${countryError}"></div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label
+                        th:text="#{locale.tea.type}"
+                        class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-6">
+                    <input type="text" name="type" th:value="${tea} ? ${tea.type} : ''"
+                           class="form-control" th:classappend="${typeError} ? ' is-invalid'" />
+                    <div th:if="${typeError}" class="invalid-feedback" th:text="${typeError}"></div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label
+                        th:text="#{locale.tea.volume}"
+                        class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-6">
+                    <input type="text" name="volume" th:value="${tea} ? ${tea.volume} : ''"
+                           class="form-control" th:classappend="${volumeError} ? ' is-invalid'" />
+                    <div th:if="${volumeError}" class="invalid-feedback" th:text="${volumeError}"></div>
+
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label
+                        th:text="#{locale.tea.amount}"
+                        class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-6">
+                    <input type="text" name="count" class="form-control" th:classappend="${countError} ? ' is-invalid'" />
+                    <div th:if="${countError}" class="invalid-feedback" th:text="${countError}"></div>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label
+                        th:text="#{locale.tea.taste}"
+                        class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-6">
+                    <input type="text" name="fragranceBaseNotes" th:value="${tea} ? ${tea.fragranceBaseNotes} : ''"
+                           class="form-control" th:classappend="${fragranceBaseNotesError} ? ' is-invalid'" />
+                    <div th:if="${fragranceBaseNotesError}" class="invalid-feedback" th:text="${fragranceBaseNotesError}"></div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label
+                        th:text="#{locale.tea.price}"
+                        class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-6">
+                    <input type="text" name="price" th:value="${tea} ? ${tea.price} : ''"
+                           class="form-control" th:classappend="${priceError} ? ' is-invalid'" />
+                    <div th:if="${priceError}" class="invalid-feedback" th:text="${priceError}"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label
+                        th:text="#{locale.tea.description}"
+                        for="exampleFormControlTextarea1"></label>
+                <textarea class="form-control col-sm-8" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+
+            <button
+                    th:text="#{locale.action.add}"
+                    type="submit" class="btn btn-dark"></button>
+
+            <input type="file" name="file">
+
+        </form>
+    </div>
+</div>
+
+<footer th:insert="~{parts/common :: footer}"></footer>
+</body>
+</html>
